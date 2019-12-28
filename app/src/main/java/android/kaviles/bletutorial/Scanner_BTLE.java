@@ -22,9 +22,6 @@ public class Scanner_BTLE {
     private long scanPeriod;
     private int signalStrength;
 
-    private UUID uuids;
-    //private ScanState scanState = ScanState.NONE;
-
 
     public Scanner_BTLE(MainActivity mainActivity, long scanPeriod, int signalStrength) {
         ma = mainActivity;
@@ -62,9 +59,9 @@ public class Scanner_BTLE {
     // providing an array of UUID objects that specify the GATT services your app supports.
     private void scanLeDevice(final boolean enable) {
 
-        uuids = UUID.fromString(SampleGattAttributes.HM_10);
 
-
+        UUID[] uuid = new UUID[1];
+        uuid[0] = UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb");
 
         if (enable && !mScanning) {
             Utils.toast(ma.getApplicationContext(), "Starting BLE scan...");
@@ -83,8 +80,8 @@ public class Scanner_BTLE {
             }, scanPeriod);
 
             mScanning = true;
-            //mBluetoothAdapter.startLeScan(mLeScanCallback);
-            mBluetoothAdapter.startLeScan(null, mLeScanCallback);
+            //mBluetoothAdapter.startLeScan(null,mLeScanCallback);
+            mBluetoothAdapter.startLeScan(uuid, mLeScanCallback);
            // mBluetoothAdapter.startLeScan(uuids, mLeScanCallback);
         }
         else {
