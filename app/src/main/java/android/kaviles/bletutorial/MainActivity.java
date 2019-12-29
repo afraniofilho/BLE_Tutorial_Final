@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -118,22 +117,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         BTLE_Device device = mBTDevicesArrayList.get(position);
 
-        Toast.makeText(this, "Device selecionado " + device.getName(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "No endereco mac: " + device.getAddress(), Toast.LENGTH_SHORT).show();
+  //      Toast.makeText(this, "Device selecionado " + device.getName(), Toast.LENGTH_SHORT).show();
+  //      Toast.makeText(this, "No endereco mac: " + device.getAddress(), Toast.LENGTH_SHORT).show();
 
 
         if (device == null) return;
-        /*
+
         final Intent intent = new Intent(this, DeviceControlActivity.class);
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-        if (mScanning) {
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
-            mScanning = false;
-        }
-        startActivity(intent);
-
-         */
+        //mScanning = false;
+        if (mBTLeScanner.isScanning()) stopScan();
+//        startActivity(intent);
 
 
     }
